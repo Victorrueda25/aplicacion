@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px; /* aumenta el ancho */
+  padding: 30px; /* agrega espacio interno */
+  font-size: 1.1rem; /* agranda el texto dentro del card */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* sombra opcional */
+}
+
+.login-card-body {
+  padding: 30px; /* espacio interno adicional */
+}
+
+.login-logo {
+  text-align: center;
+  font-size: 2rem; /* agranda el logo */
+  margin-bottom: 20px;
+}
+
+.input-group .form-control {
+  height: 50px;
+  font-size: 1rem;
+}
+
+.btn-block {
+  height: 45px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  height: auto;              /* Permite que el botón se ajuste al contenido */
+  padding: 12px 20px;        /* Espaciado interno más cómodo */
+  font-size: 1.1rem;         /* Tamaño de texto más grande */
+  width: 100%;               /* Asegura que ocupe el ancho del contenedor */
+  border-radius: 5px;        /* Bordes más suaves (opcional) */
+}
