@@ -1,6 +1,5 @@
 <?php   
 require_once "app/modelos/conexion.php";
-require_once "app/modelos/usuarios.modelo.php";
 
 class ControladorRegistro {
 

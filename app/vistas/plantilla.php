@@ -32,44 +32,35 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-  <?php
-// Mostrar navbar y sidebar si NO estamos en login o registro
-if (!isset($_GET["modulo"]) || ($_GET["modulo"] != "login" && $_GET["modulo"] != "registro")) {
-    include "modulos/navbar.php";
-    include "modulos/sidebar.php";
-}
-?>
+    <!-- Mostrar navbar y sidebar solo si está logueado y no es login/registro -->
+    <?php
+    if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok" && !isset($_GET["modulos"]) || !in_array($_GET["modulos"], ["login", "registro"])) {
+      include "app/vistas/modulos/navbar.php";
+      include "app/vistas/modulos/sidebar.php";
+    }
+    ?>
 
-<!-- Contenido del módulo principal -->
-<?php
-if (isset($_GET["modulo"])) {
-  if ($_GET["modulo"] == "inicio" ||
-      $_GET["modulo"] == "usuarios" ||
-      $_GET["modulo"] == "registro" ||
-      $_GET["modulo"] == "login") {
-      // Asegúrate de que el archivo existe y se llama correctamente
-      if ($_GET["modulo"] == "registro") {
-          include "modulos/registros.personas.php";
-      } else {
-          include "modulos/" . $_GET["modulo"] . ".php";
+    <!-- Contenido del módulo principal -->
+    <div class="content-wrapper">
+      <?php
+      // Verifica que el módulo no sea login o registro para evitar duplicados
+      if (isset($_GET["modulos"]) && !in_array($_GET["modulos"], ["login", "registro"])) {
+        include "app/vistas/modulos/" . $_GET["modulos"] . ".php";
       }
-  } else {
-      include "modulos/404.php";
-  }
-} else {
-  include "modulos/login.php";
-}
+      ?>
+    </div>
 
-?>
-
-<?php
-// Mostrar footer si NO estamos en login o registro
-if (!isset($_GET["modulo"]) || ($_GET["modulo"] != "login" && $_GET["modulo"] != "registro")) {
-    include "modulos/footer.php";
-}
-?>
-
-
+    <!-- Mostrar navbar y sidebar solo si está logueado y el módulo no es login o registro -->
+    <?php
+    if (
+      isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok" &&
+      (!isset($_GET["modulos"]) || !in_array($_GET["modulos"], ["login", "registro"]))
+    ) {
+      include "app/vistas/modulos/navbar.php";
+      include "app/vistas/modulos/sidebar.php";
+      include "app/vistas/modulos/footer.php";
+    }
+    ?>
 
 
   </div>
@@ -105,12 +96,8 @@ if (!isset($_GET["modulo"]) || ($_GET["modulo"] != "login" && $_GET["modulo"] !=
   <script src="app/vistas/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script src="app/vistas/dist/js/adminlte.js"></script>
-  <!-- AdminLTE for demo purposes -->
-
-  <!-- <script src="app/vistas/dist/js/demo.js"></script> -->
-
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="app/vistas/dist/js/pages/dashboard.js"></script>
+  <!-- Dashboard demo (descomenta si lo necesitas) -->
+  <!-- <script src="app/vistas/dist/js/pages/dashboard.js"></script> -->
 </body>
 
 </html>
